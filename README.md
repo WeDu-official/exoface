@@ -1,3 +1,5 @@
+<img src="https://github.com/user-attachments/assets/a1b834d0-44dd-405d-8db5-2855a35d7232" alt="exofacelogo-removebg-preview" width="500">
+
 **exoface** a library for facial recognition(everything from training to recognizing)
 
 **NOTE: THE exoface ONLY work in almost any operating system(\*1) which can support python 3.10 and above**
