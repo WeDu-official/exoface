@@ -20,7 +20,6 @@ def make_project(projectpath:str,messagable:bool=True):
     except (FileNotFoundError,FileExistsError,PermissionError,OSError):
         if messagable is True:
             print('ERROR, either in the matter of if a file exists or not , or about os and permiddions')
-
 def add_user(projectpath:str,username:str,messagable:bool=True):
     names = set()
     try:
@@ -46,7 +45,7 @@ def add_user(projectpath:str,username:str,messagable:bool=True):
         names.add(name)
         for b in range(len(names)):
             pdb.container_data.insert(f'{projectpath}\\data\\userlist.pdb', list(names)[b], [0, b])
-def capture_data(projectpath:str,username:str,windowed:bool=True, messagable:bool=True):
+def capture_data(projectpath:str,username:str,cameraindex:int=0,windowed:bool=True, messagable:bool=True):
     path = f"{projectpath}/data/" + username
     num_of_images = 0
     try:
@@ -60,9 +59,10 @@ def capture_data(projectpath:str,username:str,windowed:bool=True, messagable:boo
     except:
         if messagable is True:
            print('Directory Already Created')
-    vid = cv2.VideoCapture(0)
+    vid = cv2.VideoCapture(cameraindex)
     while True:
-
+        if messagable is True:
+            print('capturing data is in action')
         ret, img = vid.read()
         new_img = None
         grayimg = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -110,12 +110,12 @@ def train_data(projectpath:str,username:str,messagable:bool=True):
             if messagable is True:
                 print('path does not exist')
                 exit()
-def check_user(projectpath:str,username:str, timeout:int = 5,windowed:bool=True, messagable:bool=True):
+def check_user(projectpath:str,username:str,cameraindex:int=0,timeout:int = 5,windowed:bool=True, messagable:bool=True):
     try:
         face_cascade = cv2.CascadeClassifier(f'{projectpath}/data/haarcascade_frontalface_default.xml')
         recognizer = cv2.face.LBPHFaceRecognizer_create()
         recognizer.read(f"{projectpath}/data/classifiers/{username}_classifier.xml")
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture(cameraindex)
         pred = False
         start_time = time()
         while True:
