@@ -60,9 +60,9 @@ def capture_data(projectpath:str,username:str,cameraindex:int=0,windowed:bool=Tr
         if messagable is True:
            print('Directory Already Created')
     vid = cv2.VideoCapture(cameraindex)
+    if messagable is True:
+        print('capturing data is in action')
     while True:
-        if messagable is True:
-            print('capturing data is in action')
         ret, img = vid.read()
         new_img = None
         grayimg = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
