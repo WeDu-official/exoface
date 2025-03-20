@@ -15,7 +15,7 @@ dependencies = [
     "numpy >= 2.2.3",
     "PowerDB >= 2.1.5"
 ]
-description = "a library for facial recognition(everything from training to recognizing) "
+description = "a library for facial recognition(everything from training to recognizing)"
 readme = "README.md"
 requires-python = ">=3.10"
 classifiers = [
